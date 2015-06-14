@@ -21,6 +21,7 @@ private:
     bool eventFilter(QObject *obj, QEvent *e);
     QGraphicsScene *scene;
     Ui::MainWindow *ui;
+    QPointF mousePressPos;
 };
 
 #endif // MAINWINDOW_H
