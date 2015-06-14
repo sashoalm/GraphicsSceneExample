@@ -34,8 +34,14 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e)
             if (!item) {
                 qreal radius = 10;
                 addedItem = scene->addEllipse(startPos.x()-radius, startPos.y()-radius, 2*radius, 2*radius);
-            } else if (mouseEvent->button() == Qt::RightButton) {
-                delete item;
+            } else {
+                if (mouseEvent->button() == Qt::RightButton) {
+                    delete item;
+                } else if (mouseEvent->button() == Qt::MiddleButton) {
+                    addedItem = (QGraphicsEllipseItem *) item;
+                    addedItem->setFlag(QGraphicsItem::ItemIsMovable, false);
+                    startPos = addedItem->rect().center();
+                }
             }
         } else if (e->type() == QEvent::GraphicsSceneMouseRelease && addedItem) {
             addedItem->setFlag(QGraphicsItem::ItemIsMovable, true);
