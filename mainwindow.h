@@ -7,6 +7,8 @@ namespace Ui {
 class MainWindow;
 }
 
+class QGraphicsScene;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -16,6 +18,8 @@ public:
     ~MainWindow();
 
 private:
+    bool eventFilter(QObject *obj, QEvent *e);
+    QGraphicsScene *scene;
     Ui::MainWindow *ui;
 };
 
