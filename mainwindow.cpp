@@ -30,9 +30,12 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e)
             startPos = mouseEvent->scenePos();
             // Check if there is already an item where we're clicking, otherwise we
             // would both create a new item and start moving the old one.
-            if (!scene->itemAt(startPos, ui->graphicsView->transform())) {
+            QGraphicsItem *item = scene->itemAt(startPos, ui->graphicsView->transform());
+            if (!item) {
                 qreal radius = 10;
                 addedItem = scene->addEllipse(startPos.x()-radius, startPos.y()-radius, 2*radius, 2*radius);
+            } else if (mouseEvent->button() == Qt::RightButton) {
+                delete item;
             }
         } else if (e->type() == QEvent::GraphicsSceneMouseRelease && addedItem) {
             addedItem->setFlag(QGraphicsItem::ItemIsMovable, true);
