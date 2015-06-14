@@ -8,6 +8,7 @@ class MainWindow;
 }
 
 class QGraphicsScene;
+class QGraphicsEllipseItem;
 
 class MainWindow : public QMainWindow
 {
@@ -21,7 +22,8 @@ private:
     bool eventFilter(QObject *obj, QEvent *e);
     QGraphicsScene *scene;
     Ui::MainWindow *ui;
-    QPointF mousePressPos;
+    QGraphicsEllipseItem *addedItem;
+    QPointF startPos;
 };
 
 #endif // MAINWINDOW_H
