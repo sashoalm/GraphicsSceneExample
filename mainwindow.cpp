@@ -33,7 +33,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e)
             QGraphicsItem *item = scene->itemAt(startPos, ui->graphicsView->transform());
             if (!item) {
                 qreal radius = 10;
-                addedItem = scene->addEllipse(startPos.x()-radius, startPos.y()-radius, 2*radius, 2*radius);
+                addedItem = scene->addEllipse(startPos.x()-radius, startPos.y()-radius, 2*radius, 2*radius, QPen(), QColor(255, 0, 0, 255/3));
             } else {
                 if (mouseEvent->button() == Qt::RightButton) {
                     delete item;
